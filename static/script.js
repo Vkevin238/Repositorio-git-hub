@@ -53,3 +53,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+  // Menú móvil
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navUl = document.querySelector('nav ul');
+
+mobileMenuToggle.addEventListener('click', () => {
+    navUl.classList.toggle('show');
+    
+    // Cambiar ícono
+    const icon = mobileMenuToggle.querySelector('i');
+    if (navUl.classList.contains('show')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
+
+// Cerrar menú al hacer clic en un enlace
+const navLinks = document.querySelectorAll('nav ul li a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            navUl.classList.remove('show');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+});
